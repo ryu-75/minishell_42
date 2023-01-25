@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "readline.h": "c",
+        "get_next_line.h": "c",
+        "function.h": "c"
+    }
+}
