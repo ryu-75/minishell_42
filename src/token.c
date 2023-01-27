@@ -6,11 +6,11 @@
 /*   By: nlorion <nlorion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 12:55:56 by nlorion           #+#    #+#             */
-/*   Updated: 2023/01/27 13:04:29 by nlorion          ###   ########.fr       */
+/*   Updated: 2023/01/27 15:54:12 by nlorion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/function.h"
+#include "../include/function.h"
 
 void    init_token(t_token *token)
 {
@@ -18,7 +18,25 @@ void    init_token(t_token *token)
     if (!token)
         return ;
     token->type = 0;
-    token->value = 0;
+    token->content = 0;
+}
+
+void    init_lexer(t_lexer *lexer)
+{
+    lexer = malloc(sizeof(t_lexer));
+    if (!lexer)
+        return ;
+    lexer->pos = 0;
+    lexer->rd_pos = 0;
+    lexer->ch = 0;
+}
+
+void    new_token(char *str, char *type)
+{
+    t_token *tok;
+    tok = malloc(sizeof(t_token));
+    tok->val = type;
+    
 }
 
 void    skip_whitespace(char *s)
@@ -30,3 +48,17 @@ void    skip_whitespace(char *s)
         i++;
 }
 
+void    read_string(t_lexer *lexer)
+{
+    t_lexer *lex;
+    
+    lex = lexer;
+    while (lex->input[lex->pos] != 0)
+    {
+        if (lex->pos >= (int)ft_strlen(lex->input))
+            lex->ch = 0;
+        else
+            lex->ch = lex->input[lex->pos];
+        lex->pos++;
+    }
+}

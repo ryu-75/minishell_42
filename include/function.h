@@ -1,7 +1,7 @@
 #ifndef FUNCTION_H
 # define FUNCTION_H
 
-// ---------------- INCLUDE ------------------- //
+// ........................... INCLUDE ............................... //
 
 # include <signal.h>
 # include <stdio.h>
@@ -20,7 +20,16 @@
 # include "../libft/libft.h"
 # include "struct.h"
 
-// ---------------- FUNCTIONS --------------- //
+// ........................... INIT ............................... //
+
+void    init_token(t_token *token);
+void    init_lexer(t_lexer *lex);
+
+// ........................ LEXER ................................. //
+
+void    skip_prompt(char *str);
+void    read_string(t_lexer *lexer);
+
 
 int ft_getline(char **lineptr, size_t *n, FILE *stream);
 char    **retrieve_path(char **envp);

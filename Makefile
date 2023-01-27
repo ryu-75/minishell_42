@@ -9,7 +9,8 @@ INC												= -I ./include -I ./libft
 # *********************** SOURCES **************************************** #
 SRC												= main.c					\
 													minishell_utils.c		\
-													minishell_path.c		
+													minishell_path.c		\
+													token.c			
 
 SRCS											= $(addprefix $(SRCS_DIR), $(SRC))
 
