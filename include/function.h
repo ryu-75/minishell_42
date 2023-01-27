@@ -16,8 +16,9 @@
 # include <term.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include "../get_next_line_42Project/include/get_next_line_bonus.h"
+# include "../libft/GNL/get_next_line_bonus.h"
 # include "../libft/libft.h"
+# include "struct.h"
 
 // ---------------- FUNCTIONS --------------- //
 

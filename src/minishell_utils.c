@@ -6,7 +6,7 @@
 /*   By: nlorion <nlorion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:56:20 by nlorion           #+#    #+#             */
-/*   Updated: 2023/01/25 16:04:25 by nlorion          ###   ########.fr       */
+/*   Updated: 2023/01/25 23:40:02 by nlorion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int ft_getline(char **lineptr, size_t *n, FILE *stream)
    if (feof(stream))
       return -1;
    fgets(line,256,stream); 
-   ptr = strchr(line,'\n');   
+   ptr = ft_strchr(line,'\n');   
    if (ptr)
       *ptr = '\0'; 
-   len = strlen(line);
+   len = ft_strlen(line);
    if ((len + 1) < 256)
    {
       ptr = realloc(*lineptr, 256);

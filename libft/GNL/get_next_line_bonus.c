@@ -6,11 +6,11 @@
 /*   By: nlorion <nlorion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 18:26:12 by nlorion           #+#    #+#             */
-/*   Updated: 2023/01/25 15:13:42 by nlorion          ###   ########.fr       */
+/*   Updated: 2023/01/27 12:31:30 by nlorion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/get_next_line_bonus.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {

@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlorion <nlorion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/30 15:06:18 by nlorion           #+#    #+#             */
-/*   Updated: 2023/01/25 17:15:06 by nlorion          ###   ########.fr       */
+/*   Created: 2023/01/27 12:55:56 by nlorion           #+#    #+#             */
+/*   Updated: 2023/01/27 13:04:29 by nlorion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#include "../../include/function.h"
 
-# define BUFFER_SIZE 2046
+void    init_token(t_token *token)
+{
+    token = malloc(sizeof(t_token));
+    if (!token)
+        return ;
+    token->type = 0;
+    token->value = 0;
+}
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include  "../../libft/libft.h"
+void    skip_whitespace(char *s)
+{
+    int i;
 
-char	*ft_check_line(char *line);
+    i = 0;
+    while (s[i] == 32 || s[i] == '\n' || s[i] == '\t' || s[i] == '\r')
+        i++;
+}
 
-char	*ft_check_last_line(char *line, char *buf);
-
-char	*get_next_line(int fd);
-
-char	*ft_read_line(int fd, char *line, char *buf);
-
-#endif

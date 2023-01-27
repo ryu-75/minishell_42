@@ -3,15 +3,21 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: awallet <awallet@student.42.fr>            +#+  +:+       +#+         #
+#    By: nlorion <nlorion@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/02 18:03:30 by awallet           #+#    #+#              #
-#    Updated: 2022/05/13 17:38:24 by nlorion          ###   ########.fr        #
+#    Updated: 2023/01/27 12:37:05 by nlorion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
+# .......................... GET NEXT LINE DIR ................................
+GNL_DIR											= GNL/
+GNL_OBJDIR										= GNL/obj/
+LIB												= -I GNL/include/
+
+# .......................... LIBFT SOURCE .....................................
 SRC =   ft_atoi.c \
 		ft_bzero.c \
 		ft_calloc.c \
@@ -48,8 +54,7 @@ SRC =   ft_atoi.c \
 		ft_itoa.c \
 		ft_split.c \
 
-OBJS = $(SRC:.c=.o)
-
+# ................................ LIBFT SOURCE BONUS ................................
 BONUS =		ft_lstnew.c \
 		ft_lstadd_front.c \
 		ft_lstsize.c \
@@ -60,27 +65,37 @@ BONUS =		ft_lstnew.c \
 		ft_lstiter.c \
 		ft_lstmap.c \
 
+# ................................ LIBFT OBJECTS ......................................
+OBJS = $(SRC:.c=.o)
 BONUS_OBJS = $(BONUS:.c=.o)
 
+# ........................ GET NEXT LINE OBJECTS.......................................
+GNL_SRC											= get_next_line_bonus.c
+GNL_SRCS										= $(addprefix $(GNL_DIR)? $(GNL_SRC))
+GNL_OBJ											= $(GNL_SRC:.c=.o)
+GNL_OBJS										= $(addprefix $(GNL_OBJDIR), $(GNL_OBJ))
+$(GNL_OBJDIR)%.o								: $(GNL_DIR)%.c
+													@mkdir -p $(GNL_OBJDIR)
+													@$(CC) $(CFLAGS) -c $< -o $@
+													
+# ........................ COMPILER ..................................................
 COMPILER_COMMAND = gcc
 
 AR = ar rcs
 
 RM = rm -f
 
-
 CFLAGS = -Wall -Werror -Wextra
 
 .c.o = $(COMPILER_COMMAND) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-
-$(NAME): $(OBJS)
-	$(AR) $(NAME) $(OBJS)
+$(NAME): $(OBJS) $(GNL_OBJS)
+	$(AR) $(NAME) $(OBJS) $(GNL_OBJS)
 
 all:	$(NAME)
 
 clean:
-	$(RM) $(OBJS) $(BONUS_OBJS)
+	$(RM) $(OBJS) $(BONUS_OBJS) $(GNL_OBJS)
 
 fclean: clean
 	$(RM) $(NAME)
@@ -88,6 +103,6 @@ fclean: clean
 re:	fclean all
 
 bonus:	$(OBJS) $(BONUS_OBJS)
-	$(AR) $(NAME) $(OBJS) $(BONUS_OBJS)
+	$(AR) $(NAME) $(OBJS) $(BONUS_OBJS) 
 
 .PHONY : all bonus clean fclean re
