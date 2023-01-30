@@ -16,12 +16,23 @@
 # include <term.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include "../get_next_line_42Project/include/get_next_line_bonus.h"
+# include "../libft/GNL/include/get_next_line_bonus.h"
 # include "../libft/libft.h"
+#include "macro.h"
+#include "struct.h"
 
-// ---------------- FUNCTIONS --------------- //
+// ....................... FUNCTIONS ....................  //
 
 int ft_getline(char **lineptr, size_t *n, FILE *stream);
 char    **retrieve_path(char **envp);
 
+// ....................... PARSER ....................... //
+void    empty_line(char *s);
+
+// ....................... SYNTAXE ...................... //
+void    simple_syntaxe(char *s);
+void    rafter(char *s);
+void    check_syntaxe(char *s);
+void    slash(char *s);
+void    syntax_error(char *s);
 #endif

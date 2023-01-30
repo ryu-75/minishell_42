@@ -3,14 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: awallet <awallet@student.42.fr>            +#+  +:+       +#+         #
+#    By: nlorion <nlorion@42.student.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/02 18:03:30 by awallet           #+#    #+#              #
-#    Updated: 2022/05/13 17:38:24 by nlorion          ###   ########.fr        #
+#    Updated: 2023/01/26 13:20:13 by nlorion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+
+GNL_DIR											= GNL/src/
+GNL_OBJDIR										= GNL/obj/
 
 SRC =   ft_atoi.c \
 		ft_bzero.c \
@@ -62,7 +65,17 @@ BONUS =		ft_lstnew.c \
 
 BONUS_OBJS = $(BONUS:.c=.o)
 
-COMPILER_COMMAND = gcc
+GNL_SRC =	get_next_line_bonus.c
+GNL_SRCS = $(addprefix $(GNL_DIR), $(GNL_SRC))
+
+GNL_OBJ											= $(GNL_SRC:.c=.o)
+GNL_OBJS										= $(addprefix $(GNL_OBJDIR), $(GNL_OBJ))
+$(GNL_OBJDIR)%.o								: $(GNL_DIR)%.c
+												@mkdir -p $(GNL_OBJDIR)
+													@$(CC) $(CFLAGS) -c $< -o $@
+
+
+COMPILER_COMMAND = cc
 
 AR = ar rcs
 
@@ -74,13 +87,13 @@ CFLAGS = -Wall -Werror -Wextra
 .c.o = $(COMPILER_COMMAND) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 
-$(NAME): $(OBJS)
-	$(AR) $(NAME) $(OBJS)
+$(NAME): $(GNL_OBJS) $(BONUS_OBJS) $(OBJS) 
+	$(AR) $(NAME) $(GNL_OBJS) $(GNL_INC) $(BONUS_OBJS) $(OBJS)
 
 all:	$(NAME)
 
 clean:
-	$(RM) $(OBJS) $(BONUS_OBJS)
+	$(RM) $(OBJS) $(GNL_OBJS) $(BONUS_OBJS)
 
 fclean: clean
 	$(RM) $(NAME)

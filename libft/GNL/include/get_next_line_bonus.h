@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nlorion <nlorion@42.student.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 12:40:07 by nlorion           #+#    #+#             */
-/*   Updated: 2023/01/26 16:11:43 by nlorion          ###   ########.fr       */
+/*   Created: 2022/05/30 15:06:18 by nlorion           #+#    #+#             */
+/*   Updated: 2023/01/26 13:10:30 by nlorion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/function.h"
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-int main(int ac, char **av, char **envp)
-{
-    (void) av;
-    (void) ac;
-    (void) envp;
-    char    *input;
+# define BUFFER_SIZE 2046
 
-    while (1)
-    {
-        input = readline("$>Minishell ");
-        check_syntaxe(input);
-        if (ft_strlen(input) > 0)
-            add_history(input);
-        free(input);
-    }
-    return (0);
-}   
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include  "../../libft.h"
+
+char	*ft_check_line(char *line);
+
+char	*ft_check_last_line(char *line, char *buf);
+
+char	*get_next_line(int fd);
+
+char	*ft_read_line(int fd, char *line, char *buf);
+
+#endif
